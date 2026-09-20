@@ -3,8 +3,8 @@
 A small, lightweight framework to measure how **sensitive** and **steerable** an
 LLM safety judge is, *beyond* its raw agreement with human labels.
 
-It accompanies the paper [**"Safety is Contextual, LLM-Judges Are Not:
-Navigating the Rigid Priors of Evaluators"**](https://arxiv.org/abs/2606.07874).
+It accompanies the paper **"Safety is Contextual, LLM-Judges Are Not:
+Navigating the Rigid Priors of Evaluators"**.
 
 This repo allows you to measure two key aspects of any judge or set of judges:
 
@@ -17,7 +17,7 @@ This repo allows you to measure two key aspects of any judge or set of judges:
   to see how this affects judging.
 
 You can run on three datasets used in the paper, **NovelPrompts**
-([HF](https://huggingface.co/datasets/anissa218/novelprompts)), **SORRY-Bench**
+([HF](https://drive.google.com/drive/folders/1JzSQsRTHufVcinu5yTey2Zykwyew-uJ0?usp=sharing)), **SORRY-Bench**
 ([HF](https://huggingface.co/datasets/sorry-bench/sorry-bench-202503), gated), and a synthetic **ball-sports** "absurd definition" set (in
 `data/`), or on **your own data**, with the built-in safety definitions **or your
 own custom categories**.
@@ -116,7 +116,7 @@ families (see `src/jss/definitions.py`). The judge prompts live in `templates/`.
 
 | `--dataset` | source | modes | notes |
 |---|---|---|---|
-| `novelprompts` | HF `anissa218/novelprompts` | prompt / completion | public; has context → enables context experiments |
+| `novelprompts` | HF `novelprompts` | prompt / completion | public; has context → enables context experiments |
 | `sorrybench`   | HF (gated) | completion | run `huggingface-cli login` and accept terms for `sorry-bench/sorry-bench-202503` and `…-human-judgment-202503`; a 1k stratified subset is built & cached to `data/` |
 | `sports`       | `data/eval_sports_set.csv` | completion | the "absurd definition" steerability toy task |
 | `custom`       | your CSV via `--data` | prompt / completion | see below |
@@ -209,16 +209,3 @@ src/jss/
 notebooks/analysis.ipynb
 ```
 
-## Citation
-
-```
-@article{alloula2026safetycontextualllmjudgesnot,
-      title={Safety is Contextual, LLM-Judges Are Not: Navigating the Rigid Priors of Evaluators}, 
-      author={Anissa Alloula and Federico Licini and Ava Batchkala and Seraphina Goldfarb-Tarrant},
-      year={2026},
-      eprint={2606.07874},
-      archivePrefix={arXiv},
-      primaryClass={cs.AI},
-      url={https://arxiv.org/abs/2606.07874}, 
-}
-```
