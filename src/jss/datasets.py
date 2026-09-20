@@ -27,6 +27,8 @@ from . import schema
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 _DATA_DIR = _REPO_ROOT / "data"
 
+NOVELPROMPTS_CSV = _DATA_DIR / "eval_novel_prompts_194_annotated.csv"
+
 # Path where the cached 1k SORRY-Bench subset lives / is built.
 SORRY_BENCH_CACHE = _DATA_DIR / "sorry_bench_1k_test.csv"
 
@@ -101,11 +103,10 @@ def _finalize(raw: pd.DataFrame, family: str, mode: str) -> pd.DataFrame:
 
 # --- novelprompts ------------------------------------------------------------
 def _load_novelprompts(mode: str) -> pd.DataFrame:
-    """Build a raw canonical frame from the HF ``anissa218/novelprompts`` set."""
+    """Build a raw canonical frame assuming you have saved the dataset."""
     from datasets import load_dataset  # lazy heavy import
 
-    ds = load_dataset("anissa218/novelprompts", split="test")
-    src = ds.to_pandas()
+    src = pd.read_csv(NOVELPROMPTS_CSV)
 
     if mode == "prompt":
         cat_col, sev_col = "prompt_category", "prompt_severity"
